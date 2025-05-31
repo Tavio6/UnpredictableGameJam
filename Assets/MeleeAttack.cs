@@ -4,13 +4,13 @@ using System.Collections;
 public class MeleeAttack : MonoBehaviour
 {
     public Animator animator;
-    private bool isAttacking = false; // Flag to track ongoing attack
+    public Collider2D attackCollider;
+    private bool isAttacking = false;
 
     void Update()
     {
         RotateTowardsMouse();
 
-        // Check if the left mouse button is being held down AND attack isn't already happening
         if (Input.GetMouseButton(0) && !isAttacking)
         {
             StartCoroutine(ContinuousAttack());
@@ -32,12 +32,14 @@ public class MeleeAttack : MonoBehaviour
     {
         isAttacking = true;
 
-        while (Input.GetMouseButton(0)) // Keep attacking while the button is held
+        while (Input.GetMouseButton(0))
         {
             animator.SetBool("Attack", true);
-            yield return new WaitForSeconds(1.30f); // Wait for attack animation duration
+            attackCollider.enabled = true;
+            yield return new WaitForSeconds(1.30f);
             animator.SetBool("Attack", false);
-            yield return new WaitForSeconds(0.1f); // Small delay before next attack
+            attackCollider.enabled = false;
+            yield return new WaitForSeconds(0.1f);
         }
 
         isAttacking = false;
