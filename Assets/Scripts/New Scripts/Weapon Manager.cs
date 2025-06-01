@@ -3,7 +3,7 @@ using UnityEngine;
 public class WeaponSwitcher : MonoBehaviour
 {
     public Weapon[] weapons;
-    private int currentWeaponIndex = 0;
+    private int currentWeaponIndex = 1;
 
     void Start()
     {
