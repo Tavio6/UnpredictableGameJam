@@ -3,11 +3,11 @@ using UnityEngine;
 public class WeaponSwitcher : MonoBehaviour
 {
     public Weapon[] weapons;
-    private int currentWeaponIndex = 1;
+    private int currentWeaponIndex = 0;
 
     void Start()
     {
-        SelectWeapon(0);
+        SelectWeapon(1);
     }
 
     void Update()
