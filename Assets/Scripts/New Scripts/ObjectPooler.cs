@@ -32,6 +32,7 @@ public class ObjectPooler : MonoBehaviour
             for (int i = 0; i < pool.size; i++)
             {
                 GameObject obj = Instantiate(pool.prefab);
+                obj.name = pool.prefab.name; // Removes " (Clone)"
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }
@@ -54,7 +55,13 @@ public class ObjectPooler : MonoBehaviour
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.rotation = rotation;
 
-        poolDictionary[tag].Enqueue(objectToSpawn);
         return objectToSpawn;
     }
+    
+    public void ReturnToPool(string tag, GameObject obj)
+    {
+        poolDictionary[tag].Enqueue(obj);
+        obj.SetActive(false);
+    }
+
 }

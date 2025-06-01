@@ -14,7 +14,7 @@ public class Gun : Weapon
         Quaternion rotation = Quaternion.Euler(0, 0, angle);
 
         // Spawn and rotate bullet
-        GameObject bullet = ObjectPooler.Instance.SpawnFromPool("Bullet", firePoint.position, rotation);
+        GameObject bullet = ObjectPooler.Instance.SpawnFromPool("Player Bullet", firePoint.position, rotation);
 
         // Send direction to bullet
         bullet.GetComponent<Bullet>().SetDirection(direction);

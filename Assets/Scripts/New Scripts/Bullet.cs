@@ -4,10 +4,18 @@ public class Bullet : MonoBehaviour
 {
     public float speed = 10f;
     public float lifeTime = 2f;
-
+    public int damage = 10;
+    public string damageLayer;
+    
     private Vector2 direction;
     private float timer;
+    
+    private Rigidbody2D rb;
 
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
     void OnEnable()
     {
         timer = 0f;
@@ -20,21 +28,36 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(direction * speed * Time.deltaTime, Space.World);
-
         timer += Time.deltaTime;
         if (timer >= lifeTime)
         {
-            gameObject.SetActive(false);
+            DestoryBullet();
         }
     }
 
+    void FixedUpdate()
+    {
+        rb.MovePosition(rb.position + direction * speed * Time.fixedDeltaTime);
+    }
+    
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        
+        if (collision.gameObject.layer == LayerMask.NameToLayer(damageLayer))
         {
-            // collision.GetComponent<Enemy>()?.TakeDamage();
-            gameObject.SetActive(false);
+            collision.GetComponent<Health>()?.TakeDamage(damage);
+            DestoryBullet();
         }
+        
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
+        {
+            DestoryBullet();
+        }
+    }
+
+    void DestoryBullet()
+    {
+        // Return bullet to pool
+        ObjectPooler.Instance.ReturnToPool(gameObject.name, gameObject);
     }
 }
