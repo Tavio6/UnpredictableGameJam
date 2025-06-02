@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Knife : Weapon
 {
-    
     public Animator spriteAnimator;
     public BoxCollider2D hitBox;
-    
     public LayerMask enemyLayers;
+    public int damage = 10;
+
     private void Awake()
     {
-        RotationOffset = 270f; // place the knife at the opposite side of the mouse. only bring to the mouse side when slashing
+        RotationOffset = 270f;
+        hitBox.enabled = false;
     }
 
     protected override void Attack()
@@ -23,8 +24,11 @@ public class Knife : Weapon
     {
         spriteAnimator.SetBool("Slashing", true);
         yield return new WaitForSeconds(0.2f);
+
         hitBox.enabled = true;
         yield return new WaitForSeconds(0.1f);
+        hitBox.enabled = false;
+
         spriteAnimator.SetBool("Slashing", false);
     }
 }
