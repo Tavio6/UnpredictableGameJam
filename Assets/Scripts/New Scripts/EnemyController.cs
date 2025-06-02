@@ -43,21 +43,11 @@ public class EnemyController2D : MonoBehaviour
 
         if (canSeePlayer)
         {
-            if (distance < detectionDistance)
+            // Shoot
+            if (Time.time >= fireCooldown)
             {
-                // Run away
-                Vector2 fleeDir = -directionToPlayer.normalized;
-                Vector2 newPosition = rb.position + fleeDir * runSpeed * Time.deltaTime;
-                rb.MovePosition(newPosition);
-            }
-            else
-            {
-                // Shoot
-                if (Time.time >= fireCooldown)
-                {
-                    Shoot(directionToPlayer.normalized);
-                    fireCooldown = Time.time + 1f / fireRate;
-                }
+                Shoot(directionToPlayer.normalized);
+                fireCooldown = Time.time + 1f / fireRate;
             }
         }
     }

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class Knife : Weapon
+public class MeleeWeapon : Weapon
 {
     public Animator spriteAnimator;
     public BoxCollider2D hitBox;
