@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e3b8c2a-d300-4a73-8ce2-9464c405cdf1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.UnpredictableGameJam/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UnpredictableGameJam/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScenes/Gameplay.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScenes/Gameplay.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Health.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Health.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/New Scripts/Bullet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/New Scripts/Bullet.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/New Scripts/EnemyController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/New Scripts/EnemyController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/New Scripts/MeleeHitbox.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/New Scripts/MeleeHitbox.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/New Scripts/MeleeWeapon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/New Scripts/MeleeWeapon.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/New Scripts/Orb Container.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/New Scripts/Orb Container.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF.asset" afterDir="false" />
-    </list>
+    <list default="true" id="4e3b8c2a-d300-4a73-8ce2-9464c405cdf1" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,6 +14,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/New Scripts/Door.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/New Scripts/GameTimer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/New Scripts/MeleeHitbox.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -105,7 +95,7 @@
       <workItem from="1748865019287" duration="1278000" />
       <workItem from="1748879125088" duration="4824000" />
       <workItem from="1748938022585" duration="2811000" />
-      <workItem from="1748958292874" duration="3481000" />
+      <workItem from="1748958292874" duration="4188000" />
     </task>
     <servers />
   </component>
