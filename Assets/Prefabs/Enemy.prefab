@@ -224,7 +224,7 @@ MonoBehaviour:
     m_Bits: 8
   visionDistance: 10
   runSpeed: 7
-  detectionDistance: 2
+  detectionDistance: 5
 --- !u!114 &1020062696469917117
 MonoBehaviour:
   m_ObjectHideFlags: 0
