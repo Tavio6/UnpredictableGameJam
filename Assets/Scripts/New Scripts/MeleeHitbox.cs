@@ -6,9 +6,13 @@ public class MeleeHitbox : MonoBehaviour
     [FormerlySerializedAs("parentKnife")] public MeleeWeapon parentMeleeWeapon;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (((1 << collision.gameObject.layer) & parentMeleeWeapon.enemyLayers) != 0)
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            collision.GetComponent<Health>()?.TakeDamage(parentMeleeWeapon.damage);
+            collision.GetComponent<Health>().TakeDamage(parentMeleeWeapon.damage);
+        }
+        else if (GameManager.Instance.CanParryBullets && collision.TryGetComponent<Parry>(out var parry))
+        {
+            parry.TakeDamage(parentMeleeWeapon.damage);
         }
     }
 }

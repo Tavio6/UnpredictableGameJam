@@ -5,7 +5,7 @@ public class Bullet : MonoBehaviour
     public float speed = 10f;
     public float lifeTime = 2f;
     public int damage = 10;
-    public string damageLayer;
+    public string[] damageLayers;
     
     private Vector2 direction;
     private float timer;
@@ -42,10 +42,14 @@ public class Bullet : MonoBehaviour
     
     void OnTriggerEnter2D(Collider2D collision)
     {
-        
-        if (collision.gameObject.layer == LayerMask.NameToLayer(damageLayer))
+        foreach (string damageLayer in damageLayers)
         {
-            collision.GetComponent<Health>()?.TakeDamage(damage);
+            if (collision.gameObject.layer != LayerMask.NameToLayer(damageLayer)) continue;
+            if (GameManager.Instance.CanParryBullets && gameObject.name == "Player Bullet" && collision.TryGetComponent<Parry>(out var parry))
+            {
+                parry.TakeDamage(damage);
+            }
+            else collision.GetComponent<Health>()?.TakeDamage(damage);
             DestoryBullet();
         }
         

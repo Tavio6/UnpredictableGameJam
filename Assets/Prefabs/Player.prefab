@@ -208,7 +208,7 @@ Animator:
   m_GameObject: {fileID: 764417818691804831}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 51619756e30dc0a44b5c696c3b748000, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -509,7 +509,7 @@ GameObject:
   - component: {fileID: 7451356581050152623}
   - component: {fileID: 265877055009329565}
   m_Layer: 3
-  m_Name: Weapon Holder
+  m_Name: Weapon Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

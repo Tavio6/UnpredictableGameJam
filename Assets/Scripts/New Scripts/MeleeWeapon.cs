@@ -6,7 +6,6 @@ public class MeleeWeapon : Weapon
 {
     public Animator spriteAnimator;
     public BoxCollider2D hitBox;
-    public LayerMask enemyLayers;
     public int damage = 10;
 
     private void Awake()

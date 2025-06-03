@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Health : MonoBehaviour
@@ -8,6 +9,14 @@ public class Health : MonoBehaviour
     public float knockbackForce = 5f;
 
     [SerializeField] private Image hpFillImage; // Assign in Inspector
+
+    private void Awake()
+    {
+        if (hpFillImage == null && gameObject.tag == "Player")
+        {
+            hpFillImage = GameObject.Find("Player HP Bar").GetComponent<Image>();
+        }
+    }
 
     void Start()
     {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class OrbContainer : MonoBehaviour
@@ -9,8 +10,18 @@ public class OrbContainer : MonoBehaviour
     public List<Orb> possibleOrbs = new List<Orb>();
     public OrbDisplayUI orbDisplayUI;
 
-    [Header("References")] 
-    public WeaponManager WeaponManager;
+    [Header("Orb of Bravery")] 
+    public WeaponManager weaponManager;
+
+    [Header("Orb of Cowardice")]
+    public GameObject enemiesParent;
+    public float strafeIntervalDelta = 0.5f;
+    public float strafeSpeedDelta = 1f;
+
+    [Header("Orb of Comeuppance")] 
+    public int enemyDamageDelta = 5;
+    public float enemyFireRateDelta = 1f;
+    
     
     private bool hasGivenOrb = false;
 
@@ -42,7 +53,7 @@ public class OrbContainer : MonoBehaviour
                 Resources.Load<Sprite>("Sprites/Orbs/Bravery"),
                 () =>
                 {
-                    WeaponManager.SelectWeapon(WeaponType.Knife);
+                    weaponManager.SelectWeapon(WeaponType.Knife);
                 }
             ),
             new (
@@ -51,7 +62,14 @@ public class OrbContainer : MonoBehaviour
                 Resources.Load<Sprite>("Sprites/Orbs/Cowardice"),
                 () =>
                 {
-                    WeaponManager.SelectWeapon(WeaponType.Knife);
+                    weaponManager.SelectWeapon(WeaponType.Gun);
+                    var allEnemies = enemiesParent.GetComponentsInChildren<EnemyController>(includeInactive: true);
+
+                    foreach (var enemy in allEnemies)
+                    {
+                        enemy.strafeInterval -= strafeIntervalDelta;
+                        enemy.strafeSpeed += strafeSpeedDelta;
+                    }
                 }
             ),
             new (
@@ -60,7 +78,14 @@ public class OrbContainer : MonoBehaviour
                 Resources.Load<Sprite>("Sprites/Orbs/Comeuppance"),
                 () =>
                 {
-                    WeaponManager.SelectWeapon(WeaponType.Knife);
+                    GameManager.Instance.CanParryBullets = true;
+                    var allEnemies = enemiesParent.GetComponentsInChildren<EnemyController>(includeInactive: true);
+
+                    foreach (var enemy in allEnemies)
+                    {
+                        enemy.bulletDamage += enemyDamageDelta;
+                        enemy.fireRate += enemyFireRateDelta;
+                    }
                 }
             )
         });

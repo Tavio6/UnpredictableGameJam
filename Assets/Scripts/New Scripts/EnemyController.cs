@@ -1,14 +1,11 @@
 using UnityEngine;
 using DG.Tweening;
 
-public class EnemyController2D : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
     public Transform weaponHolder;
     public Transform weapon;
-
-    public float fireRate = 1f;
-    private float fireCooldown;
-
+    
     public LayerMask obstacleMask; // Set to "Wall" layer
     public LayerMask playerMask;   // Set to "Player" layer
     public float visionDistance = 10f;
@@ -19,15 +16,21 @@ public class EnemyController2D : MonoBehaviour
     [Header("Strafe Settings")]
     public bool moveX = true;
     public float strafeOffset = 1f;
+    public float strafeInterval = 4f;
+    public float strafeSpeed = 2f;
+    
     private float strafeCooldown = 0f;
-    private float strafeInterval = 4f;
     private bool isStrafing = false;
-    private Vector3 originalPosition;
+    
+    [Header("Stats")]
+    public int bulletDamage = 10;
+    public float fireRate = 1f;
+    
+    private float fireCooldown;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        originalPosition = transform.position;
     }
 
     void Start()
@@ -83,8 +86,10 @@ public class EnemyController2D : MonoBehaviour
 
     void Shoot(Vector2 direction)
     {
-        GameObject bullet = ObjectPooler.Instance.SpawnFromPool("Enemy Bullet", weapon.position, Quaternion.identity);
-        bullet.GetComponent<Bullet>().SetDirection(direction.normalized);
+        GameObject bulletObj = ObjectPooler.Instance.SpawnFromPool("Enemy Bullet", weapon.position, Quaternion.identity);
+        var bullet = bulletObj.GetComponent<Bullet>();
+        bullet.SetDirection(direction.normalized);
+        bullet.damage = bulletDamage;
     }
 
     void StartStrafeSequence()
@@ -106,15 +111,15 @@ public class EnemyController2D : MonoBehaviour
             .Append(DOTween.To(() => tweenPosition, x => {
                 tweenPosition = x;
                 rb.MovePosition(x);
-            }, p1, 0.5f))
+            }, p1, 1/strafeSpeed))
             .Append(DOTween.To(() => tweenPosition, x => {
                 tweenPosition = x;
                 rb.MovePosition(x);
-            }, p2, 0.5f))
+            }, p2, 1/strafeSpeed))
             .Append(DOTween.To(() => tweenPosition, x => {
                 tweenPosition = x;
                 rb.MovePosition(x);
-            }, p0, 0.5f))
+            }, p0, 1/strafeSpeed))
             .OnComplete(() => isStrafing = false);
     }
 }
